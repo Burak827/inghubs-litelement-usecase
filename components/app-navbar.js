@@ -12,7 +12,6 @@ export class AppNavbar extends LitElement {
     super();
     updateWhenLocaleChanges(this);
 
-    console.log('Current locale:', getLocale());
     if (getLocale() === 'tr') {
       this.classes = { flagtr: true, flaguk: false };
     } else {
@@ -107,8 +106,8 @@ export class AppNavbar extends LitElement {
         mask-size: cover;
         background-color: #FF784F;
         display: inline-block;
-        width: 1.5rem;   
-        height: 1.5rem;
+        width: 1.3rem;   
+        height: 1.3rem;
         margin-right: 0.3rem;
         vertical-align: middle;
       }

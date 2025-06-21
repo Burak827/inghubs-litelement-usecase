@@ -8,4 +8,3 @@ export const { getLocale, setLocale } = configureLocalization({
     loadLocale: (locale) => import(`/locales/${locale}.js`),
 });
 
-setLocale('tr');
