@@ -12,15 +12,5 @@ export class AppNavbar extends LitElement {
     `;
   }
 
-  firstUpdated() {
-    this.shadowRoot.querySelectorAll('a[data-link]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const href = a.getAttribute('href');
-        window.router.render(href);
-        window.history.pushState({}, '', href);
-      });
-    });
-  }
 }
 customElements.define('app-navbar', AppNavbar);

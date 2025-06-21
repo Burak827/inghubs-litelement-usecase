@@ -1,11 +1,10 @@
 import { Router } from '@vaadin/router';
 import './store.js';
-import './components/app-root.js';
 import './components/app-navbar.js';
 import './components/employee-list.js';
 import './components/employee-form.js';
 
-const outlet = document.body.querySelector('app-root').shadowRoot.getElementById('outlet');
+const outlet = document.body.querySelector('app-root');
 const router = new Router(outlet);
 router.setRoutes([
     { path: '/', redirect: '/employees' },
