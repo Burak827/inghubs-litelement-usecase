@@ -1,16 +1,16 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 const initialState = {
-    list: Array.from({ length: 40 }, (_, i) => ({
-      id: nanoid(),
-      firstName: `First${i + 1}`,
-      lastName: `Last${i + 1}`,
-      dateOfEmployment: `2025-06-${String((i % 30) + 1).padStart(2, '0')}`,
-      dateOfBirth: `1990-${String(((i % 12) + 1)).padStart(2, '0')}-${String(((i % 28) + 1)).padStart(2, '0')}`,
-      phone: `+90 500 000 ${String(1000 + i).slice(-4)}`,
-      email: `user${i + 1}@example.com`,
-      department: i % 2 === 0 ? 'Tech' : 'Analytics',
-      position: ['Junior', 'Medior', 'Senior'][i % 3]
+    list: Array.from({ length: 10 }, (_, i) => ({
+        id: nanoid(),
+        firstName: `First${i + 1}`,
+        lastName: `Last${i + 1}`,
+        dateOfEmployment: `2025-06-${String((i % 30) + 1).padStart(2, '0')}`,
+        dateOfBirth: `1990-${String(((i % 12) + 1)).padStart(2, '0')}-${String(((i % 28) + 1)).padStart(2, '0')}`,
+        phone: `+90 500 000 ${String(1000 + i).slice(-4)}`,
+        email: `user${i + 1}@example.com`,
+        department: i % 2 === 0 ? 'Tech' : 'Analytics',
+        position: ['Junior', 'Medior', 'Senior'][i % 3]
     })),
 }
 
@@ -38,7 +38,7 @@ const employeeSlice = createSlice({
             }
         },
         deleteEmployee(state, action) {
-            state.list = state.list.filter(emp => emp.id !== action.payload)
+            state.list = state.list.filter(emp => emp.id !== action.payload.id)
         }
     }
 })

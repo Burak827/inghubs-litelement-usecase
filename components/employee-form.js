@@ -5,7 +5,7 @@ import { addEmployee } from '../redux/employeeSlice.js';
 import { msg, updateWhenLocaleChanges } from '@lit/localize';
 
 export class EmployeeForm extends LitElement {
-    static styles = css`
+  static styles = css`
      :host {
         display: block;
         max-width: 600px;
@@ -81,34 +81,34 @@ export class EmployeeForm extends LitElement {
       }
     }
   `;
-    static properties = {
-        firstName: { type: String },
-        lastName: { type: String },
-        employmentDate: { type: String },
-        birthDate: { type: String },
-        phoneNumber: { type: String },
-        emailAddress: { type: String },
-        department: { type: String },
-        position: { type: String },
-        errorMessage: { type: String }
-    };
+  static properties = {
+    firstName: { type: String },
+    lastName: { type: String },
+    employmentDate: { type: String },
+    birthDate: { type: String },
+    phoneNumber: { type: String },
+    emailAddress: { type: String },
+    department: { type: String },
+    position: { type: String },
+    errorMessage: { type: String }
+  };
 
-    constructor() {
-        super();
-        updateWhenLocaleChanges(this);
-        this.firstName = '';
-        this.lastName = '';
-        this.employmentDate = '';
-        this.birthDate = '';
-        this.phoneNumber = '';
-        this.emailAddress = '';
-        this.department = '';
-        this.position = '';
-        this.errorMessage = '';
-    }
+  constructor() {
+    super();
+    updateWhenLocaleChanges(this);
+    this.firstName = '';
+    this.lastName = '';
+    this.employmentDate = '';
+    this.birthDate = '';
+    this.phoneNumber = '';
+    this.emailAddress = '';
+    this.department = '';
+    this.position = '';
+    this.errorMessage = '';
+  }
 
-    render() {
-        return html`
+  render() {
+    return html`
         <form @submit="${this._handleSubmit}">
             ${this.errorMessage ? html`<div class="error">${this.errorMessage}</div>` : ''}
             <label>${msg('First Name')}
@@ -147,40 +147,40 @@ export class EmployeeForm extends LitElement {
             <button type="submit">${msg('Create')}</button>
         </form>
         `;
-    }
+  }
 
-    _handleInputChange(e) {
-        const { name, value } = e.target;
-        this[name] = value;
-    }
+  _handleInputChange(e) {
+    const { name, value } = e.target;
+    this[name] = value;
+  }
 
-    _handleSubmit(e) {
-        e.preventDefault();
-        // basic required check
-        if (!this.firstName || !this.lastName || !this.employmentDate || !this.birthDate ||
-            !this.phoneNumber || !this.emailAddress || !this.department || !this.position) {
-            this.errorMessage = 'Please fill in all fields.';
-            return;
-        }
-        // email uniqueness check
-        const exists = store.getState().employees?.find(emp => emp.emailAddress === this.emailAddress);
-        if (exists) {
-            this.errorMessage = 'An employee with this email already exists.';
-            return;
-        }
-        // dispatch new employee
-        store.dispatch(addEmployee({
-            id: Date.now(),
-            firstName: this.firstName,
-            lastName: this.lastName,
-            employmentDate: this.employmentDate,
-            birthDate: this.birthDate,
-            phoneNumber: this.phoneNumber,
-            emailAddress: this.emailAddress,
-            department: this.department,
-            position: this.position
-        }));
-        Router.go('/employees');
+  _handleSubmit(e) {
+    e.preventDefault();
+    // basic required check
+    if (!this.firstName || !this.lastName || !this.employmentDate || !this.birthDate ||
+      !this.phoneNumber || !this.emailAddress || !this.department || !this.position) {
+      this.errorMessage = msg('Please fill in all fields.');
+      return;
     }
+    // email uniqueness check
+    const exists = store.getState().employees?.find(emp => emp.emailAddress === this.emailAddress);
+    if (exists) {
+      this.errorMessage = msg('An employee with this email already exists.');
+      return;
+    }
+    // dispatch new employee
+    store.dispatch(addEmployee({
+      id: Date.now(),
+      firstName: this.firstName,
+      lastName: this.lastName,
+      employmentDate: this.employmentDate,
+      birthDate: this.birthDate,
+      phoneNumber: this.phoneNumber,
+      emailAddress: this.emailAddress,
+      department: this.department,
+      position: this.position
+    }));
+    Router.go('/employees');
+  }
 }
 customElements.define('employee-form', EmployeeForm);

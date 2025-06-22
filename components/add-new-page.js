@@ -45,13 +45,13 @@ export class AddNewPage extends LitElement {
         // basic required check
         if (!this.firstName || !this.lastName || !this.employmentDate || !this.birthDate ||
             !this.phoneNumber || !this.emailAddress || !this.department || !this.position) {
-            this.errorMessage = 'Please fill in all fields.';
+            this.errorMessage = msg('Please fill in all fields.');
             return;
         }
         // email uniqueness check
         const exists = store.getState().employees?.find(emp => emp.emailAddress === this.emailAddress);
         if (exists) {
-            this.errorMessage = 'An employee with this email already exists.';
+            this.errorMessage = msg('An employee with this email already exists.');
             return;
         }
         // dispatch new employee

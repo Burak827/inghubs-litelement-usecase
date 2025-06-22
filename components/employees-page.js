@@ -1,16 +1,20 @@
-import { msg, updateWhenLocaleChanges } from '@lit/localize';
+import { msg, str, updateWhenLocaleChanges } from '@lit/localize';
 import { LitElement, css, html } from 'lit';
-import { selectEmployees } from '../redux/employeeSlice.js';
+import { selectEmployees, deleteEmployee } from '../redux/employeeSlice.js';
 import { store } from '../redux/store.js';
 import './app-navbar.js';
 import './employee-list.js';
 import './employee-table.js';
+import './confirmation-dialog.js';
 
 export class EmployeesPage extends LitElement {
     static properties = {
         baseEmployees: { type: Array },
         view: { type: String },
-        searchTerm: { type: String }
+        searchTerm: { type: String },
+        deleteDialogOpen: { type: Boolean },
+        deleteDialogId: { type: String },
+        deleteDialogName: { type: String },
     };
 
     static styles = css`
@@ -110,7 +114,7 @@ export class EmployeesPage extends LitElement {
         .switch-button[aria-pressed="true"] {
             opacity: 1;
         }
-        `;
+    `;
 
     constructor() {
         super();
@@ -119,6 +123,9 @@ export class EmployeesPage extends LitElement {
         this.view = 'list';
         this.searchTerm = '';
         this._unsubscribe = null
+        this.deleteDialogOpen = false;
+        this.deleteDialogId = '';
+        this.deleteDialogName = '';
     }
 
     toggleView(view) {
@@ -131,6 +138,9 @@ export class EmployeesPage extends LitElement {
         this._unsubscribe = store.subscribe(() => {
             this.baseEmployees = selectEmployees(store.getState());
         })
+        this.addEventListener('delete-request', this._onDeleteRequest);
+        this.addEventListener('confirm-delete', this._onConfirmDelete);
+        this.addEventListener('cancel-delete', this._onCancelDelete);
     }
 
     disconnectedCallback() {
@@ -143,6 +153,25 @@ export class EmployeesPage extends LitElement {
 
     _onSearchInput(e) {
         this.searchTerm = e.target.value;
+    }
+
+    _onDeleteRequest(e) {
+        const id = e.detail.id;
+        const emp = this.baseEmployees.find(x => x.id === id);
+        this.deleteDialogId = id;
+        this.deleteDialogName = `${emp.firstName} ${emp.lastName}`;
+        this.deleteDialogOpen = true;
+    }
+
+    _onConfirmDelete() {
+        store.dispatch(deleteEmployee({
+            id: this.deleteDialogId
+        }));
+        this.deleteDialogOpen = false;
+    }
+
+    _onCancelDelete() {
+        this.deleteDialogOpen = false;
     }
 
     _clearSearch() {
@@ -162,6 +191,11 @@ export class EmployeesPage extends LitElement {
     render() {
         return html`
         <app-navbar></app-navbar>
+        <confirmation-dialog
+            .open=${this.deleteDialogOpen}
+            title=${msg('Are you sure?')}
+            message=${msg(str`Selected Employee record of ${this.deleteDialogName} will be deleted`)}>
+        </confirmation-dialog>
         <div class="container">
             <div class="header">
                 <h1 class="title">${this.view === 'list' ? msg('Employee List') : msg('Employee Table')}</h1>
