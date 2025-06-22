@@ -2,21 +2,32 @@ import { LitElement, html, css } from 'lit';
 import { msg, updateWhenLocaleChanges } from '@lit/localize';
 import { classMap } from 'lit/directives/class-map.js';
 import { getLocale, setLocale } from '../localization';
+import { Router } from '@vaadin/router';
 
 export class AppNavbar extends LitElement {
   static properties = {
-    classes: { type: Object }
+    classes: { type: Object },
+    path: { type: String },
+    location: { type: Object }
   };
 
   constructor() {
     super();
     updateWhenLocaleChanges(this);
-
     if (getLocale() === 'tr') {
       this.classes = { flagtr: true, flaguk: false };
     } else {
       this.classes = { flagtr: false, flaguk: true };
     }
+
+    this.path = window.location.pathname;
+    window.addEventListener('popstate', () => {
+      this.path = window.location.pathname;
+    });
+  }
+
+  firstUpdated() {
+    this.location = Router.location;
   }
 
   static get styles() {
@@ -126,11 +137,20 @@ export class AppNavbar extends LitElement {
         margin-bottom: 2px;
         vertical-align: middle;
       }
+
+      .nav-button {
+        opacity: 0.6;
+        transition: opacity 0.2s;
+      }
+      .nav-button.active {
+        opacity: 1;
+      }
     `;
   }
 
   render() {
     return html`
+    ${this.location}
       <header class="navbar">
         <div class="logo-container">
           <a href="/" class="logo"></a>
@@ -138,8 +158,26 @@ export class AppNavbar extends LitElement {
         </div>
         <div class="right-section">
           <nav class="nav-buttons">
-            <a href="/employees" class="nav-button employees">${msg('Employees')}</a>
-            <a href="/employees/new" class="nav-button add-new">${msg('Add New')}</a>
+            <a
+              href="/employees"
+              class=${classMap({
+      'nav-button': true,
+      'employees': true,
+      'active': this.path === '/employees'
+    })}
+            >
+              ${msg('Employees')}
+            </a>
+            <a
+              href="/employees/new"
+              class=${classMap({
+      'nav-button': true,
+      'add-new': true,
+      'active': this.path === '/employees/new'
+    })}
+            >
+              ${msg('Add New')}
+            </a>
           </nav>
           <div class="language-switcher" @click="${this._switchLanguage}">
             <span class=${classMap(this.classes)}></span>

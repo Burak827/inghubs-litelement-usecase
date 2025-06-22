@@ -107,12 +107,56 @@ export class EmployeeList extends LitElement {
         }
             
         .switch-button {
-        opacity: 0.4;
-        transition: opacity 0.2s;
+            opacity: 0.4;
+            transition: opacity 0.2s;
         }
 
         .switch-button[aria-pressed="true"] {
-        opacity: 1;
+            opacity: 1;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .edit-button {
+            all: unset;
+            cursor: pointer;
+        }
+
+        .edit-button::before {
+            -webkit-mask: url(/assets/icons/edit.svg) no-repeat 50% 50%;
+            mask: url(/assets/icons/edit.svg) no-repeat 50% 50%;
+              content: '';
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            background-color: #FF784F;
+            display: inline-block;
+            width: 1.2rem;   
+            height: 1.2rem;
+            margin-bottom: 2px;
+            vertical-align: middle;
+        }
+
+        .delete-button {
+            all: unset;
+            cursor: pointer;
+        }
+
+        .delete-button::before {
+            -webkit-mask: url(/assets/icons/delete.svg) no-repeat 50% 50%;
+            mask: url(/assets/icons/delete.svg) no-repeat 50% 50%;
+              content: '';
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            background-color: #FF784F;
+            display: inline-block;
+            width: 1.2rem;   
+            height: 1.2rem;
+            margin-bottom: 2px;
+            vertical-align: middle;
         }
         `;
 
@@ -185,12 +229,22 @@ export class EmployeeList extends LitElement {
                             <div class="list-column">${employee.email}</div>
                             <div class="list-column">${employee.department}</div>
                             <div class="list-column">${employee.position}</div>
-                            <div class="list-column">ACTIONS</div>
-                        </li>`
+                            <div class="list-column actions">
+                                <button class="edit-button" @click=${() => this._editEmployee(employee.id)}></button>
+                                <button class="delete-button" @click=${() => this._deleteEmployee(employee.id)} ></button>
+                            </div>
+                        </li> `
         )}
                 </ul>
             </div>
         </div>`;
+    }
+    _editEmployee(id) {
+        console.log(`Delete employee with id: ${id}`);
+    }
+
+    _deleteEmployee(id) {
+        console.log(`Delete employee with id: ${id}`);
     }
 }
 customElements.define('employee-list', EmployeeList);
