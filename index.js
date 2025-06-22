@@ -1,5 +1,5 @@
 import { Router } from '@vaadin/router';
-import './store.js';
+import './store/store.js';
 import './components/app-navbar.js';
 import './components/employee-list.js';
 import './components/employee-form.js';
@@ -8,8 +8,7 @@ import './localization.js';
 const outlet = document.body.querySelector('app-root');
 const router = new Router(outlet);
 router.setRoutes([
-    // { path: '/', redirect: '/employees' },
-    { path: '/', component: 'employee-list' },
+    { path: '/', redirect: '/employees' },
     { path: '/employees', component: 'employee-list' },
     { path: '/employees/new', component: 'employee-form' },
     { path: '/employees/:id/edit', component: 'employee-form' },

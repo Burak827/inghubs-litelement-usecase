@@ -131,13 +131,13 @@ export class AppNavbar extends LitElement {
     return html`
       <header class="navbar">
         <div class="logo-container">
-          <div class="logo"></div>
+          <a href="/" class="logo"></a>
           <span class="title">ING</span>
         </div>
         <div class="right-section">
           <nav class="nav-buttons">
-            <a class="nav-button employees">${msg('Employees')}</a>
-            <a class="nav-button add-new">${msg('Add New')}</a>
+            <a href="/employees" class="nav-button employees">${msg('Employees')}</a>
+            <a href="/employees/new" class="nav-button add-new">${msg('Add New')}</a>
           </nav>
           <div class="language-switcher" @click="${this._switchLanguage}">
             <span class=${classMap(this.classes)}></span>
