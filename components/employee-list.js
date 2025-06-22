@@ -5,6 +5,8 @@ import './employee-actions.js';
 export class EmployeeList extends LitElement {
     static properties = {
         employees: { type: Array },
+        currentPage: { type: Number },
+        itemsPerPage: { type: Number },
     };
 
     static styles = css`
@@ -44,13 +46,57 @@ export class EmployeeList extends LitElement {
         .bold {
             font-weight: bold;
         }
+        .pagination {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 1rem;
+        }
+        .pagination button {
+          margin: 0 0.25rem;
+          padding: 0.5rem 0.75rem;
+          border: 1px solid #ccc;
+          background: white;
+          cursor: pointer;
+        }
+        .pagination button[disabled] {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+        .pagination button.active {
+          font-weight: bold;
+          border-color: #FF784F;
+          color: #FF784F;
+        }
 `;
 
     constructor() {
         super();
-        this.employees = [];
+        this.currentPage = 1;
+        this.itemsPerPage = 10; // adjust as needed
         updateWhenLocaleChanges(this);
         this._unsubscribe = null
+    }
+
+    get totalPages() {
+      return Math.ceil(this.employees.length / this.itemsPerPage);
+    }
+
+    get paginatedEmployees() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      return this.employees.slice(start, start + this.itemsPerPage);
+    }
+
+    previousPage() {
+      if (this.currentPage > 1) this.currentPage--;
+    }
+
+    nextPage() {
+      if (this.currentPage < this.totalPages) this.currentPage++;
+    }
+
+    goToPage(page) {
+      this.currentPage = page;
     }
 
     connectedCallback() {
@@ -74,7 +120,7 @@ export class EmployeeList extends LitElement {
                             <div class="list-column list-title">${msg('Actions')}</div>
                     </li>
                     ${repeat(
-            this.employees,
+            this.paginatedEmployees,
             (employee) => employee.id,
             (employee) => html`
                         <li class="list-item">
@@ -93,6 +139,25 @@ export class EmployeeList extends LitElement {
                         </li> `
         )}
                 </ul>
+                <div class="pagination">
+                  <button 
+                    ?disabled=${this.currentPage === 1} 
+                    @click=${() => this.previousPage()}>
+                    ‹ Previous
+                  </button>
+                  ${Array.from({ length: this.totalPages }, (_, i) => i + 1).map(page => html`
+                    <button
+                      class=${this.currentPage === page ? 'active' : ''}
+                      @click=${() => this.goToPage(page)}>
+                      ${page}
+                    </button>
+                  `)}
+                  <button
+                    ?disabled=${this.currentPage === this.totalPages}
+                    @click=${() => this.nextPage()}>
+                    Next ›
+                  </button>
+                </div>
         </div>`;
     }
 }
