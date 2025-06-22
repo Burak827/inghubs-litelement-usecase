@@ -90,6 +90,26 @@
         <source>Create</source>
         <target>Oluştur</target>
       </trans-unit>
+      <trans-unit id="sf3ff78cc329d3528">
+        <source>Previous</source>
+        <target>Önceki</target>
+      </trans-unit>
+      <trans-unit id="s0fbf6dc6a1966408">
+        <source>Next</source>
+        <target>Sonraki</target>
+      </trans-unit>
+      <trans-unit id="s7739632000bcd915">
+        <source>Employee Table</source>
+        <target>Çalışan Tablosu</target>
+      </trans-unit>
+      <trans-unit id="s5f4586bc1e2740e6">
+        <source>Clear search</source>
+        <target>Temizle</target>
+      </trans-unit>
+      <trans-unit id="s5d929ff1619ac0c9">
+        <source>Search</source>
+        <target>Ara</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -4,11 +4,13 @@ import { selectEmployees } from '../redux/employeeSlice.js';
 import { store } from '../redux/store.js';
 import './app-navbar.js';
 import './employee-list.js';
+import './employee-table.js';
 
 export class EmployeesPage extends LitElement {
     static properties = {
         baseEmployees: { type: Array },
-        view: { type: String }
+        view: { type: String },
+        searchTerm: { type: String }
     };
 
     static styles = css`
@@ -34,6 +36,37 @@ export class EmployeesPage extends LitElement {
             display: flex;
             align-items: center;
             gap: 2rem;
+        }
+
+        .search-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .search-container input {
+            width: 60%;
+            border: 1px solid #ccc;
+            max-width: 300px;
+            padding: 0.5rem;
+            border-radius: 4px;
+            font-size: 1.2rem;
+        }
+        .search-container input:focus {
+            border: 1px solid #ccc;
+            outline: none;
+            border-color: #FF784F;
+        }
+        .search-container .clear-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: -1.5rem;
+            color: #888;
+        }
+        .search-container .clear-btn:hover {
+            color: #FF784F;
         }
 
         .switch-button{
@@ -84,6 +117,7 @@ export class EmployeesPage extends LitElement {
         this.baseEmployees = []
         updateWhenLocaleChanges(this);
         this.view = 'list';
+        this.searchTerm = '';
         this._unsubscribe = null
     }
 
@@ -107,12 +141,46 @@ export class EmployeesPage extends LitElement {
         }
     }
 
+    _onSearchInput(e) {
+        this.searchTerm = e.target.value;
+    }
+
+    _clearSearch() {
+        this.searchTerm = '';
+    }
+
+    get filteredEmployees() {
+        const term = this.searchTerm.trim().toLowerCase();
+        if (!term) return this.baseEmployees;
+        return this.baseEmployees.filter(emp =>
+            Object.values(emp).some(val =>
+                String(val).toLowerCase().includes(term)
+            )
+        );
+    }
+
     render() {
         return html`
         <app-navbar></app-navbar>
         <div class="container">
             <div class="header">
                 <h1 class="title">${this.view === 'list' ? msg('Employee List') : msg('Employee Table')}</h1>
+                <div class="search-container">
+                  <input
+                    type="text"
+                    placeholder=${msg('Search')}...
+                    .value=${this.searchTerm}
+                    @input=${this._onSearchInput}
+                  />
+                  <button
+                    class="clear-btn"
+                    ?hidden=${!this.searchTerm}
+                    @click=${this._clearSearch}
+                    aria-label=${msg('Clear search')}
+                  >
+                    ×
+                  </button>
+                </div>
                 <div class="view-switcher">
                     <button
                       class="switch-button list-switch"
@@ -127,8 +195,8 @@ export class EmployeesPage extends LitElement {
                 </div>
             </div>
         ${this.view === 'list' ?
-                html`<employee-list .employees=${this.baseEmployees}></employee-list>` :
-                html`<employee-table .employees=${this.baseEmployees}></employee-table>`
+                html`<employee-list .employees=${this.filteredEmployees}></employee-list>` :
+                html`<employee-table .employees=${this.filteredEmployees}></employee-table>`
             }
         </div>`;
     }
