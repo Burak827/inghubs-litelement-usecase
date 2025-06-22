@@ -109,6 +109,7 @@ export class AppNavbar extends LitElement {
         width: 1.3rem;   
         height: 1.3rem;
         margin-right: 0.3rem;
+        margin-bottom: 0.3rem;
         vertical-align: middle;
       }
 
@@ -122,6 +123,7 @@ export class AppNavbar extends LitElement {
         display: inline-block;
         width: 1.5rem;   
         height: 1.5rem;
+        margin-bottom: 2px;
         vertical-align: middle;
       }
     `;

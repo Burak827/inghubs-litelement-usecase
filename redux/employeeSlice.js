@@ -56,10 +56,15 @@ const employeeSlice = createSlice({
     }
 })
 
+export const selectEmployees = state => state.employee.list
+export const selectEmployeeById = (state, id) =>
+    state.employee.list.find(emp => emp.id === id)
+
 export const {
     addEmployee,
     updateEmployee,
     deleteEmployee
 } = employeeSlice.actions
+
 
 export default employeeSlice.reducer
