@@ -14,7 +14,7 @@
 's1e45a4d7635fbda7': `Departman`,
 's24aadbfb1b1a1a11': `Teknoloji`,
 's27b132c4731a29c3': `Yeni Çalışan`,
-'s2c2b04f2561a1d4b': `Analiz`,
+'s2c2b04f2561a1d4b': `Analitik`,
 's2c57913ffd36d298': `Adı`,
 's382a2aa3984474dd': `Oluştur`,
 's3db6c3999daeecdb': `Çalışan Listesi`,

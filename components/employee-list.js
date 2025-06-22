@@ -25,7 +25,7 @@ export class EmployeeList extends LitElement {
             grid-template-columns: 5rem 10% 10% 15% 10% 10% 10% 10% 10% 10%;
             align-items: center;
             background: white;
-            height: 5rem;
+            height: 3.5rem;
             margin-bottom: 3px;
         }
 
