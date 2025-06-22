@@ -1,5 +1,5 @@
 import { Router } from '@vaadin/router';
-import './store/store.js';
+import './redux/store.js';
 import './components/app-navbar.js';
 import './components/employee-list.js';
 import './components/employee-form.js';
