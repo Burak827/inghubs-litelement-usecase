@@ -1,24 +1,35 @@
 
-// Do not modify this file by hand!
-// Re-generate this file by running lit-localize
+    // Do not modify this file by hand!
+    // Re-generate this file by running lit-localize
 
+    
+    
 
+    /* eslint-disable no-irregular-whitespace */
+    /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
-/* eslint-disable no-irregular-whitespace */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-export const templates = {
-  's1e45a4d7635fbda7': `Departman`,
-  's2c57913ffd36d298': `Adı`,
-  's3db6c3999daeecdb': `Çalışan Listesi`,
-  's4ec58dc6a75753da': `Yeni Ekle`,
-  's766ce21b2e2707eb': `İşe Başlama Tarihi`,
-  's8af61807443f32a4': `Eylemler`,
-  's95a75a2392af5780': `Soyadı`,
-  'sc1611c0558728a2a': `Pozisyon`,
-  'scba00271d50c74f6': `Çalışanlar`,
-  'scc614aa608f3be07': `Doğum Tarihi`,
-  'sd1f44f1a8bc20e67': `E-posta`,
-  'sf1bc83d2509bafcf': `Telefon`,
-};
+    export const templates = {
+      's1e2e135dac5ba993': `E-Posta Adresi`,
+'s1e45a4d7635fbda7': `Departman`,
+'s24aadbfb1b1a1a11': `Teknoloji`,
+'s27b132c4731a29c3': `Yeni Çalışan`,
+'s2c2b04f2561a1d4b': `Analiz`,
+'s2c57913ffd36d298': `Adı`,
+'s382a2aa3984474dd': `Oluştur`,
+'s3db6c3999daeecdb': `Çalışan Listesi`,
+'s4ec58dc6a75753da': `Yeni Ekle`,
+'s53802e3f37d072a7': `Doğum Tarihi`,
+'s7404d9208a486318': `Acemi`,
+'s772528836550622c': `İşe Giriş Tarihi`,
+'s871b1fe6d1846958': `Telefon Numarası`,
+'s8a37652cc28d3c55': `Kıdemli`,
+'s8af61807443f32a4': `Eylemler`,
+'s95a75a2392af5780': `Soyadı`,
+'sacc4d771f79ccced': `Vasat`,
+'sc1611c0558728a2a': `Pozisyon`,
+'scba00271d50c74f6': `Çalışanlar`,
+'sd1f44f1a8bc20e67': `E-posta`,
+'sf1bc83d2509bafcf': `Telefon`,
+'sfc63e31ac7c956ed': `Seçiniz`,
+    };
+  

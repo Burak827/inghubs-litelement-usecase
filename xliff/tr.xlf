@@ -22,14 +22,6 @@
         <source>Last Name</source>
         <target>Soyadı</target>
       </trans-unit>
-      <trans-unit id="s766ce21b2e2707eb">
-        <source>Date Of Employement</source>
-        <target>İşe Başlama Tarihi</target>
-      </trans-unit>
-      <trans-unit id="scc614aa608f3be07">
-        <source>Date Of Birth</source>
-        <target>Doğum Tarihi</target>
-      </trans-unit>
       <trans-unit id="sf1bc83d2509bafcf">
         <source>Phone</source>
         <target>Telefon</target>
@@ -49,6 +41,54 @@
       <trans-unit id="s8af61807443f32a4">
         <source>Actions</source>
         <target>Eylemler</target>
+      </trans-unit>
+      <trans-unit id="s27b132c4731a29c3">
+        <source>New Employee</source>
+        <target>Yeni Çalışan</target>
+      </trans-unit>
+      <trans-unit id="s772528836550622c">
+        <source>Date of Employment</source>
+        <target>İşe Giriş Tarihi</target>
+      </trans-unit>
+      <trans-unit id="s53802e3f37d072a7">
+        <source>Date of Birth</source>
+        <target>Doğum Tarihi</target>
+      </trans-unit>
+      <trans-unit id="s871b1fe6d1846958">
+        <source>Phone Number</source>
+        <target>Telefon Numarası</target>
+      </trans-unit>
+      <trans-unit id="s1e2e135dac5ba993">
+        <source>Email Address</source>
+        <target>E-Posta Adresi</target>
+      </trans-unit>
+      <trans-unit id="sfc63e31ac7c956ed">
+        <source>Select</source>
+        <target>Seçiniz</target>
+      </trans-unit>
+      <trans-unit id="s2c2b04f2561a1d4b">
+        <source>Analytics</source>
+        <target>Analiz</target>
+      </trans-unit>
+      <trans-unit id="s24aadbfb1b1a1a11">
+        <source>Tech</source>
+        <target>Teknoloji</target>
+      </trans-unit>
+      <trans-unit id="s7404d9208a486318">
+        <source>Junior</source>
+        <target>Acemi</target>
+      </trans-unit>
+      <trans-unit id="sacc4d771f79ccced">
+        <source>Medior</source>
+        <target>Vasat</target>
+      </trans-unit>
+      <trans-unit id="s8a37652cc28d3c55">
+        <source>Senior</source>
+        <target>Kıdemli</target>
+      </trans-unit>
+      <trans-unit id="s382a2aa3984474dd">
+        <source>Create</source>
+        <target>Oluştur</target>
       </trans-unit>
     </body>
   </file>

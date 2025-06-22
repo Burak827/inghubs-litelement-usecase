@@ -207,8 +207,8 @@ export class EmployeeList extends LitElement {
                             <div class="list-column list-title"><input class="checkbox" type="checkbox" /></div>
                             <div class="list-column list-title">${msg('First Name')}</div>
                             <div class="list-column list-title">${msg('Last Name')}</div>
-                            <div class="list-column list-title">${msg('Date Of Employement')}</div>
-                            <div class="list-column list-title">${msg('Date Of Birth')}</div>
+                            <div class="list-column list-title">${msg('Date of Employment')}</div>
+                            <div class="list-column list-title">${msg('Date of Birth')}</div>
                             <div class="list-column list-title">${msg('Phone')}</div>
                             <div class="list-column list-title">${msg('Email')}</div>
                             <div class="list-column list-title">${msg('Department')}</div>
