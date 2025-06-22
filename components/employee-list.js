@@ -46,27 +46,64 @@ export class EmployeeList extends LitElement {
         .bold {
             font-weight: bold;
         }
+
         .pagination {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+            gap: 1rem;
+            font-size: 1.3rem
         }
+
         .pagination button {
-          margin: 0 0.25rem;
-          padding: 0.5rem 0.75rem;
-          border: 1px solid #ccc;
-          background: white;
-          cursor: pointer;
+            all: unset;
+            cursor: pointer;
         }
+
         .pagination button[disabled] {
-          cursor: not-allowed;
-          opacity: 0.5;
+            cursor: not-allowed;
+            opacity: 0.5;
         }
+
         .pagination button.active {
-          font-weight: bold;
-          border-color: #FF784F;
-          color: #FF784F;
+            all: unset;
+            cursor: pointer;
+            font-weight: bold;
+            color: #FF784F;
+        }
+
+        .prev-button next-button {
+            all: unset;
+            cursor: pointer;
+        }   
+
+        .prev-button::before {
+            -webkit-mask: url(/assets/icons/left.svg) no-repeat 50% 50%;
+            mask: url(/assets/icons/left.svg) no-repeat 50% 50%;
+            content: '';
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            background-color: #FF784F;
+            display: inline-block;
+            width: 1.2rem;   
+            height: 1.2rem;
+            margin-bottom: 2px;
+            vertical-align: middle;
+        }
+
+        .next-button::before {
+            -webkit-mask: url(/assets/icons/right.svg) no-repeat 50% 50%;
+            mask: url(/assets/icons/right.svg) no-repeat 50% 50%;
+            content: '';
+            -webkit-mask-size: cover;
+            mask-size: cover;
+            background-color: #FF784F;
+            display: inline-block;
+            width: 1.2rem;   
+            height: 1.2rem;
+            margin-bottom: 2px;
+            vertical-align: middle;
         }
 `;
 
@@ -79,24 +116,24 @@ export class EmployeeList extends LitElement {
     }
 
     get totalPages() {
-      return Math.ceil(this.employees.length / this.itemsPerPage);
+        return Math.ceil(this.employees.length / this.itemsPerPage);
     }
 
     get paginatedEmployees() {
-      const start = (this.currentPage - 1) * this.itemsPerPage;
-      return this.employees.slice(start, start + this.itemsPerPage);
+        const start = (this.currentPage - 1) * this.itemsPerPage;
+        return this.employees.slice(start, start + this.itemsPerPage);
     }
 
     previousPage() {
-      if (this.currentPage > 1) this.currentPage--;
+        if (this.currentPage > 1) this.currentPage--;
     }
 
     nextPage() {
-      if (this.currentPage < this.totalPages) this.currentPage++;
+        if (this.currentPage < this.totalPages) this.currentPage++;
     }
 
     goToPage(page) {
-      this.currentPage = page;
+        this.currentPage = page;
     }
 
     connectedCallback() {
@@ -140,23 +177,19 @@ export class EmployeeList extends LitElement {
         )}
                 </ul>
                 <div class="pagination">
-                  <button 
+                  <button class="prev-button"
                     ?disabled=${this.currentPage === 1} 
-                    @click=${() => this.previousPage()}>
-                    ‹ Previous
-                  </button>
+                    @click=${() => this.previousPage()}></button>
                   ${Array.from({ length: this.totalPages }, (_, i) => i + 1).map(page => html`
-                    <button
+                    <button 
                       class=${this.currentPage === page ? 'active' : ''}
                       @click=${() => this.goToPage(page)}>
                       ${page}
                     </button>
                   `)}
-                  <button
+                  <button class="next-button"
                     ?disabled=${this.currentPage === this.totalPages}
-                    @click=${() => this.nextPage()}>
-                    Next ›
-                  </button>
+                    @click=${() => this.nextPage()}></button>
                 </div>
         </div>`;
     }

@@ -1,30 +1,17 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
 const initialState = {
-    list: [
-        {
-            "id": "1",
-            "firstName": "Ahmet",
-            "lastName": "Yılmaz",
-            "dateOfEmployment": "2025-06-01",
-            "dateOfBirth": "1990-03-15",
-            "phone": "+90 555 123 45 67",
-            "email": "ahmet@example.com",
-            "department": "Tech",
-            "position": "Junior"
-        },
-        {
-            "id": "2",
-            "firstName": "Mehmet",
-            "lastName": "Kara",
-            "dateOfEmployment": "2024-11-10",
-            "dateOfBirth": "1988-07-22",
-            "phone": "+90 532 765 43 21",
-            "email": "mehmet@example.com",
-            "department": "Analytics",
-            "position": "Senior"
-        }
-    ]
+    list: Array.from({ length: 40 }, (_, i) => ({
+      id: nanoid(),
+      firstName: `First${i + 1}`,
+      lastName: `Last${i + 1}`,
+      dateOfEmployment: `2025-06-${String((i % 30) + 1).padStart(2, '0')}`,
+      dateOfBirth: `1990-${String(((i % 12) + 1)).padStart(2, '0')}-${String(((i % 28) + 1)).padStart(2, '0')}`,
+      phone: `+90 500 000 ${String(1000 + i).slice(-4)}`,
+      email: `user${i + 1}@example.com`,
+      department: i % 2 === 0 ? 'Tech' : 'Analytics',
+      position: ['Junior', 'Medior', 'Senior'][i % 3]
+    })),
 }
 
 const employeeSlice = createSlice({

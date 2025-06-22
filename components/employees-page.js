@@ -117,14 +117,12 @@ export class EmployeesPage extends LitElement {
                     <button
                       class="switch-button list-switch"
                       @click="${() => this.toggleView('list')}"
-                      aria-pressed="${this.view === 'list'}"
-                      aria-label="Liste görünümü">
+                      aria-pressed="${this.view === 'list'}">
                     </button>
                     <button
                       class="switch-button table-switch"
                       @click="${() => this.toggleView('data')}"
-                      aria-pressed="${this.view === 'data'}"
-                      aria-label="Tablo görünümü">
+                      aria-pressed="${this.view === 'data'}">
                     </button>
                 </div>
             </div>
