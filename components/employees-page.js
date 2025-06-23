@@ -148,6 +148,7 @@ export class EmployeesPage extends LitElement {
         this.addEventListener('cancel-delete', this._onCancelDelete);
         this.addEventListener('edit-request', this._onEditRequest);
         this.addEventListener('form-saved', this._onFormSaved);
+        this.addEventListener('form-cancelled', this._onFormCanceled);
     }
 
     disconnectedCallback() {
@@ -193,9 +194,12 @@ export class EmployeesPage extends LitElement {
     }
 
     _onFormSaved(e) {
-        console.log('Form saved:', e.detail);
         const { employee } = e.detail;
         store.dispatch(updateEmployee({ employee }));
+        this.editDialogOpen = false;
+    }
+
+    _onFormCanceled() {
         this.editDialogOpen = false;
     }
 

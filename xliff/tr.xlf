@@ -131,8 +131,16 @@
         <target>Emin misiniz?</target>
       </trans-unit>
       <trans-unit id="sede71d28a4c7c4d4">
-        <source>Selected Employee record of <x id="0" equiv-text="${this.dialogName}"/> will be deleted</source>
+        <source>Selected Employee record of <x id="0" equiv-text="${this.deleteDialogName}"/> will be deleted</source>
         <target>Seçilen <x id="0" equiv-text="${this.dialogName}"/> isimli çalışan kaydı silinecek.</target>
+      </trans-unit>
+      <trans-unit id="s8b0432eecbd8b034">
+        <source>Update</source>
+        <target>Güncelle</target>
+      </trans-unit>
+      <trans-unit id="s8a9fa9684ba37683">
+        <source>Edit Employee</source>
+        <target>Çalışanı Düzenle</target>
       </trans-unit>
     </body>
   </file>

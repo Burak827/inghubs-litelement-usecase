@@ -1,9 +1,8 @@
-import { LitElement, html, css } from 'lit';
-import { Router } from '@vaadin/router';
-import { store } from '../redux/store.js';
-import { addEmployee } from '../redux/employeeSlice.js';
-import { updateEmployee } from '../redux/employeeSlice.js';
 import { msg, updateWhenLocaleChanges } from '@lit/localize';
+import { Router } from '@vaadin/router';
+import { LitElement, css, html } from 'lit';
+import { addEmployee } from '../redux/employeeSlice.js';
+import { store } from '../redux/store.js';
 
 export class EmployeeForm extends LitElement {
   static styles = css`

@@ -59,20 +59,20 @@ export class EmployeeActions extends LitElement {
 
     render() {
         return html`
-       <div class="actions">
-            <button class="edit-button"
-                @click=${() => this.dispatchEvent(new CustomEvent('edit-request', {
-                detail: { id: this.id },
-                bubbles: true,
-                composed: true
-            }))}></button>
-            <button class="delete-button"
-                @click=${() => this.dispatchEvent(new CustomEvent('delete-request', {
-                detail: { id: this.id },
-                bubbles: true,
-                composed: true
-            }))}></button>
-       </div>`;
+        <div class="actions">
+                <button class="edit-button"
+                    @click=${() => this.dispatchEvent(new CustomEvent('edit-request', {
+                    detail: { id: this.id },
+                    bubbles: true,
+                    composed: true
+                }))}></button>
+                <button class="delete-button"
+                    @click=${() => this.dispatchEvent(new CustomEvent('delete-request', {
+                    detail: { id: this.id },
+                    bubbles: true,
+                    composed: true
+                }))}></button>
+        </div>`;
     }
 }
 customElements.define('employee-actions', EmployeeActions);

@@ -50,7 +50,7 @@ export class EmployeeEditDialog extends LitElement {
         text-align: center;
         margin: 1rem 0;
     }
-    
+
     @media (max-width: 600px) {
         .dialog {
             width: 100vw !important;
@@ -97,6 +97,10 @@ export class EmployeeEditDialog extends LitElement {
     }
 
     _onCancel() {
+        this.dispatchEvent(new CustomEvent('form-cancelled', {
+            bubbles: true,
+            composed: true
+        }));
         this.open = false;
     }
 }
