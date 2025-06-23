@@ -22,7 +22,7 @@ export class EmployeeList extends LitElement {
 
         .list-item {
             display: grid;
-            grid-template-columns: 5rem 10% 10% 15% 10% 10% 10% 10% 10% 10%;
+            grid-template-columns: 2% 10% 10% 15% 10% 10% 15% 10% 10% 5%;
             align-items: center;
             background: white;
             height: 3.5rem;

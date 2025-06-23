@@ -113,32 +113,32 @@ export class EmployeeForm extends LitElement {
         <form @submit="${this._handleSubmit}">
             ${this.errorMessage ? html`<div class="error">${this.errorMessage}</div>` : ''}
             <label>${msg('First Name')}
-                <input name="firstName" .value="${this.employee.firstName || ''}" @input="${this._handleInputChange}" required />
+                <input name="firstName" .value="${this.employee?.firstName || ''}" @input="${this._handleInputChange}" required />
             </label>
             <label>${msg('Last Name')}
-                <input name="lastName" .value="${this.employee.lastName || ''}" @input="${this._handleInputChange}" required />
+                <input name="lastName" .value="${this.employee?.lastName || ''}" @input="${this._handleInputChange}" required />
             </label>
             <label>${msg('Date of Employment')}
-                <input type="date" name="dateOfEmployment" .value="${this.employee.dateOfEmployment || ''}" @input="${this._handleInputChange}" required />
+                <input type="date" name="dateOfEmployment" .value="${this.employee?.dateOfEmployment || ''}" @input="${this._handleInputChange}" required />
             </label>
             <label>${msg('Date of Birth')}
-                <input type="date" name="dateOfBirth" .value="${this.employee.dateOfBirth || ''}" @input="${this._handleInputChange}" required />
+                <input type="date" name="dateOfBirth" .value="${this.employee?.dateOfBirth || ''}" @input="${this._handleInputChange}" required />
             </label>
             <label>${msg('Phone Number')}
-                <input name="phone" .value="${this.employee.phone || ''}" @input="${this._handleInputChange}" pattern="\\d{10,15}" required />
+                <input name="phone" .value="${this.employee?.phone || ''}" @input="${this._handleInputChange}" pattern="\\d{10,15}" required />
             </label>
             <label>${msg('Email Address')}
-                <input type="email" name="email" .value="${this.employee.email || ''}" @input="${this._handleInputChange}" required />
+                <input type="email" name="email" .value="${this.employee?.email || ''}" @input="${this._handleInputChange}" required />
             </label>
             <label>${msg('Department')}
-            <select name="department" .value="${this.employee.department || ''}" @change="${this._handleInputChange}" required>
+            <select name="department" .value="${this.employee?.department || ''}" @change="${this._handleInputChange}" required>
                 <option value="">${msg('Select')}...</option>
                 <option value="Analytics">${msg('Analytics')}</option>
                 <option value="Tech">${msg('Tech')}</option>
             </select>
             </label>
             <label>${msg('Position')}
-                <select name="position" .value="${this.employee.position || ''}" @change="${this._handleInputChange}" required>
+                <select name="position" .value="${this.employee?.position || ''}" @change="${this._handleInputChange}" required>
                     <option value="">${msg('Select')}...</option>
                     <option value="Junior">${msg('Junior')}</option>
                     <option value="Medior">${msg('Medior')}</option>
