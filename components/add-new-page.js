@@ -24,7 +24,7 @@ export class AddNewPage extends LitElement {
             justify-content: center;
         }
     `;
-    
+
     constructor() {
         super();
         updateWhenLocaleChanges(this);

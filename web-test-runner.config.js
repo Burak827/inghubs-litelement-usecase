@@ -4,8 +4,11 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {legacyPlugin} from '@web/dev-server-legacy';
-import {playwrightLauncher} from '@web/test-runner-playwright';
+import { legacyPlugin } from '@web/dev-server-legacy';
+import { playwrightLauncher } from '@web/test-runner-playwright';
+import rollupReplace from '@rollup/plugin-replace';
+import { fromRollup } from '@web/dev-server-rollup';
+
 
 const mode = process.env.MODE || 'dev';
 if (!['dev', 'prod'].includes(mode)) {
@@ -53,9 +56,9 @@ if (!['dev', 'prod'].includes(mode)) {
 const browsers = {
   // Local browser testing via playwright
   // ===========
-  chromium: playwrightLauncher({product: 'chromium'}),
-  firefox: playwrightLauncher({product: 'firefox'}),
-  webkit: playwrightLauncher({product: 'webkit'}),
+  chromium: playwrightLauncher({ product: 'chromium' }),
+  firefox: playwrightLauncher({ product: 'firefox' }),
+  webkit: playwrightLauncher({ product: 'webkit' }),
 
   // Uncomment example launchers for running on Sauce Labs
   // ===========
@@ -83,12 +86,13 @@ try {
 } catch (e) {
   console.warn(e);
 }
+const replace = fromRollup(rollupReplace);
 
 // https://modern-web.dev/docs/test-runner/cli-and-configuration/
 export default {
   rootDir: '.',
   files: ['./test/**/*_test.js'],
-  nodeResolve: {exportConditions: mode === 'dev' ? ['development'] : []},
+  nodeResolve: { exportConditions: mode === 'dev' ? ['development'] : [] },
   preserveSymlinks: true,
   browsers: commandLineBrowsers ?? Object.values(browsers),
   testFramework: {
@@ -97,6 +101,9 @@ export default {
       ui: 'tdd',
       timeout: '60000',
     },
+  },
+  define: {
+    'process': process,
   },
   plugins: [
     // Detect browsers without modules (e.g. IE11) and transform to SystemJS
@@ -115,6 +122,10 @@ export default {
           },
         ],
       },
+    }),
+    replace({
+      "preventAssignment": true,
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
     }),
   ],
 };
