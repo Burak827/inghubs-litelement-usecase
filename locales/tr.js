@@ -44,5 +44,6 @@
 'sf1bc83d2509bafcf': `Telefon`,
 'sf3ff78cc329d3528': `Önceki`,
 'sfc63e31ac7c956ed': `Seçiniz`,
+'saf63d34c8601dd41': str`${0}`,
     };
   

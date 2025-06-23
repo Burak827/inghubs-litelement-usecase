@@ -2,7 +2,7 @@
 
 import { LitElement, html, css } from 'lit';
 import { repeat } from 'lit/directives/repeat.js';
-import { msg } from '@lit/localize';
+import { msg, str } from '@lit/localize';
 import { updateWhenLocaleChanges } from '@lit/localize';
 
 export class EmployeeTable extends LitElement {
@@ -131,8 +131,8 @@ export class EmployeeTable extends LitElement {
                 <td class="list-column">${employee.dateOfBirth}</td>
                 <td class="list-column">${employee.phone}</td>
                 <td class="list-column">${employee.email}</td>
-                <td class="list-column">${msg(employee.department)}</td>
-                <td class="list-column">${msg(employee.position)}</td>
+                <td class="list-column">${msg(str`${employee.department}`)}</td>
+                <td class="list-column">${msg(str`${employee.position}`)}</td>
                 <td class="list-column">
                   <employee-actions .id=${employee.id}></employee-actions>
                 </td>

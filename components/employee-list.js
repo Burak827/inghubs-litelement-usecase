@@ -1,4 +1,4 @@
-import { msg, updateWhenLocaleChanges } from '@lit/localize';
+import { msg, str, updateWhenLocaleChanges } from '@lit/localize';
 import { LitElement, css, html } from 'lit';
 import { repeat } from 'lit/directives/repeat.js';
 import './employee-actions.js';
@@ -168,8 +168,8 @@ export class EmployeeList extends LitElement {
                             <div class="list-column">${employee.dateOfBirth}</div>
                             <div class="list-column">${employee.phone}</div>
                             <div class="list-column">${employee.email}</div>
-                            <div class="list-column">${msg(employee.department)}</div>
-                            <div class="list-column">${msg(employee.position)}</div>
+                            <div class="list-column">${msg(str`${employee.department}`)}</div>
+                            <div class="list-column">${msg(str`${employee.position}`)}</div>
                             <div class="list-column ">
                                <employee-actions .id=${employee.id}></employee-actions>
                             </div>
