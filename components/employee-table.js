@@ -131,8 +131,8 @@ export class EmployeeTable extends LitElement {
                 <td class="list-column">${employee.dateOfBirth}</td>
                 <td class="list-column">${employee.phone}</td>
                 <td class="list-column">${employee.email}</td>
-                <td class="list-column">${employee.department}</td>
-                <td class="list-column">${employee.position}</td>
+                <td class="list-column">${msg(employee.department)}</td>
+                <td class="list-column">${msg(employee.position)}</td>
                 <td class="list-column">
                   <employee-actions .id=${employee.id}></employee-actions>
                 </td>

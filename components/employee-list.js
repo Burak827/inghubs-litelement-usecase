@@ -168,8 +168,8 @@ export class EmployeeList extends LitElement {
                             <div class="list-column">${employee.dateOfBirth}</div>
                             <div class="list-column">${employee.phone}</div>
                             <div class="list-column">${employee.email}</div>
-                            <div class="list-column">${employee.department}</div>
-                            <div class="list-column">${employee.position}</div>
+                            <div class="list-column">${msg(employee.department)}</div>
+                            <div class="list-column">${msg(employee.position)}</div>
                             <div class="list-column ">
                                <employee-actions .id=${employee.id}></employee-actions>
                             </div>
