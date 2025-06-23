@@ -39,7 +39,7 @@ suite('add-new-page', () => {
   test('handleSubmit sets errorMessage when fields are missing', async () => {
     const el = await fixture(html`<add-new-page></add-new-page>`);
     // simulate submit with missing fields
-    const fakeEvent = { preventDefault: () => {} };
+    const fakeEvent = { preventDefault: () => { } };
     el._handleSubmit(fakeEvent);
     assert.equal(
       el.errorMessage,
@@ -61,7 +61,7 @@ suite('add-new-page', () => {
     el.position = 'Junior';
     // stub store state to include duplicate email
     store.getState = () => ({ employees: [{ emailAddress: 'duplicate@example.com' }] });
-    const fakeEvent = { preventDefault: () => {} };
+    const fakeEvent = { preventDefault: () => { } };
     el._handleSubmit(fakeEvent);
     assert.equal(
       el.errorMessage,
