@@ -1,11 +1,12 @@
 import { msg, str, updateWhenLocaleChanges } from '@lit/localize';
 import { LitElement, css, html } from 'lit';
-import { selectEmployees, deleteEmployee } from '../redux/employeeSlice.js';
+import { selectEmployees, updateEmployee, deleteEmployee } from '../redux/employeeSlice.js';
 import { store } from '../redux/store.js';
 import './app-navbar.js';
 import './employee-list.js';
 import './employee-table.js';
 import './confirmation-dialog.js';
+import './employee-edit-dialog.js';
 
 export class EmployeesPage extends LitElement {
     static properties = {
@@ -15,6 +16,8 @@ export class EmployeesPage extends LitElement {
         deleteDialogOpen: { type: Boolean },
         deleteDialogId: { type: String },
         deleteDialogName: { type: String },
+        editDialogOpen: { type: Boolean },
+        editDialogEmployee: { type: Object }
     };
 
     static styles = css`
@@ -126,6 +129,8 @@ export class EmployeesPage extends LitElement {
         this.deleteDialogOpen = false;
         this.deleteDialogId = '';
         this.deleteDialogName = '';
+        this.editDialogOpen = false;
+        this.editDialogEmployee = null;
     }
 
     toggleView(view) {
@@ -141,6 +146,8 @@ export class EmployeesPage extends LitElement {
         this.addEventListener('delete-request', this._onDeleteRequest);
         this.addEventListener('confirm-delete', this._onConfirmDelete);
         this.addEventListener('cancel-delete', this._onCancelDelete);
+        this.addEventListener('edit-request', this._onEditRequest);
+        this.addEventListener('form-saved', this._onFormSaved);
     }
 
     disconnectedCallback() {
@@ -178,6 +185,20 @@ export class EmployeesPage extends LitElement {
         this.searchTerm = '';
     }
 
+    _onEditRequest(e) {
+        const id = e.detail.id;
+        const emp = this.baseEmployees.find(x => x.id === id);
+        this.editDialogEmployee = { ...emp };
+        this.editDialogOpen = true;
+    }
+
+    _onFormSaved(e) {
+        console.log('Form saved:', e.detail);
+        const { employee } = e.detail;
+        store.dispatch(updateEmployee({ employee }));
+        this.editDialogOpen = false;
+    }
+
     get filteredEmployees() {
         const term = this.searchTerm.trim().toLowerCase();
         if (!term) return this.baseEmployees;
@@ -191,6 +212,10 @@ export class EmployeesPage extends LitElement {
     render() {
         return html`
         <app-navbar></app-navbar>
+        <employee-edit-dialog 
+            .open=${this.editDialogOpen} 
+            .employee=${this.editDialogEmployee}>
+        </employee-edit-dialog>
         <confirmation-dialog
             .open=${this.deleteDialogOpen}
             title=${msg('Are you sure?')}

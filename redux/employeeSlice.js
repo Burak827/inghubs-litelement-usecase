@@ -32,9 +32,9 @@ const employeeSlice = createSlice({
             }
         },
         updateEmployee(state, action) {
-            const idx = state.list.findIndex(emp => emp.id === action.payload.id)
+            const idx = state.list.findIndex(emp => emp.id === action.payload.employee.id)
             if (idx !== -1) {
-                state.list[idx] = action.payload
+                state.list[idx] = action.payload.employee
             }
         },
         deleteEmployee(state, action) {

@@ -16,8 +16,15 @@ export class AddNewPage extends LitElement {
             color:#FF784F;
             font-size: 1.6rem;
             font-weight: 400;
-        }`;
+        }
 
+        .content {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+        }
+    `;
+    
     constructor() {
         super();
         updateWhenLocaleChanges(this);
@@ -29,6 +36,8 @@ export class AddNewPage extends LitElement {
             <app-navbar></app-navbar>
             <div class="header">
                 <h1 class="title">${msg('New Employee')}</h1>
+            </div>
+            <div class="content">
                 <employee-form></employee-form>
             </div>
         </div>
